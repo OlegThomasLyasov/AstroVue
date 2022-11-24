@@ -1,0 +1,39 @@
+// АТОМАРНАЯ МАКСИМАЛЬНАЯ ШИРИНА
+// ==============================================
+
+// Шаг: 5%, диапазон: 0 - 100
+for $_i in range(0, 100, 5)
+  .max-w{$_i}
+    max-width $_i+"%" !important
+
++mediaQuery768()
+  for $_i in range(0, 100, 5)
+    .max-w{$_i}-sm
+      max-width $_i+"%" !important
+
++mediaQuery1024()
+  for $_i in range(0, 100, 5)
+    .max-w{$_i}-md
+      max-width $_i+"%" !important
+
+// Шаг: 5px, диапазон: 0 - 100
+for $_i in range(5px, 100px, 5)
+  .max-w{$_i}px
+    max-width $_i !important
+
+// Шаг: 20px, диапазон: 120 - 300
+for $_i in range(120px, 300px, 20)
+  .max-w{$_i}px
+    max-width $_i !important
+
+// МИНИМАЛЬНАЯ ВЫСОТА
+// -----------------------------------------------
+// Шаг: 20px, диапазон: 0 - 440
+for $_i in range(0px, 440px, 20)
+  .min-h{$_i}
+    min-height $_i !important
+
++mediaQuery1440()
+  for $_i in range(0px, 440px, 20)
+    .min-h{$_i}-lg
+      min-height $_i !important

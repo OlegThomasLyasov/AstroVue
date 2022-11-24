@@ -1,0 +1,190 @@
+mediaQuery1920()
+  @media screen and (min-width: 1920px)
+    {block}
+
+mediaQuery1440()
+  @media screen and (min-width: 1440px)
+    {block}
+
+mediaQuery1280()
+  @media screen and (min-width: 1280px)
+    {block}
+
+mediaQuery1230()
+  @media screen and (min-width: 1199px)
+    {block}
+
+mediaQuery1024()
+  @media screen and (min-width: 1024px)
+    {block}
+
+mediaQueryM1024()
+  @media screen and (max-width: 1023px)
+    {block}
+
+mediaQuery900()
+  @media screen and (min-width: 900px)
+    {block}
+
+mediaQuery848()
+  @media screen and (min-width: 848px)
+    {block}
+
+mediaQuery768()
+  @media screen and (min-width: 768px)
+    {block}
+
+mediaQueryM768()
+  @media screen and (max-width: 767px)
+    {block}
+
+mediaQuery600()
+  @media screen and (min-width: 600px)
+    {block}
+
+mediaQuery414-768()
+  @media screen and (min-width: 414px) and (max-width: 768px)
+    {block}
+
+mediaQuery414()
+  @media screen and (min-width: 414px)
+    {block}
+
+mediaQuery375()
+  @media screen and (min-width: 375px)
+    {block}
+
+mediaQuery360()
+  @media screen and (min-width: 360px)
+    {block}
+
+mediaQuery320()
+  @media screen and (min-width: 320px)
+    {block}
+
+mediaQueryH500()
+  @media screen and (min-height: 500px)
+    {block}
+
+wrapper()
+  width 100%
+
+container()
+  margin-right auto
+  margin-left auto
+  width 100%
+  max-width 60rem
+  +mediaQuery768()
+    max-width grid-md
+    padding-left gap
+    padding-right gap
+  +mediaQuery1024()
+    max-width grid-xl
+
+container2()
+  margin-right auto
+  margin-left auto
+  width 100%
+  padding 0 1.6rem
+  +mediaQuery768()
+    padding-right gap
+    padding-left gap
+  +mediaQuery900()
+    padding-right 0
+    padding-left 0
+    max-width 84rem
+  +mediaQuery1024()
+    max-width 96.4rem
+  +mediaQuery1440()
+    max-width 120rem
+  &.small
+    +mediaQuery1440()
+      max-width 99.4rem
+
+padd-top()
+  padding-top 7rem
+  +mediaQuery768()
+    padding-top 8.5rem
+  +mediaQuery1024()
+    padding-top 9.5rem
+  +mediaQuery1440()
+    padding-top 13.5rem
+padd-bott()
+  padding-bottom 7rem
+  +mediaQuery768()
+    padding-bottom 8.5rem
+  +mediaQuery1024()
+    padding-bottom 9.5rem
+  +mediaQuery1440()
+    padding-bottom 13.5rem
+
+marg-top()
+  margin-top 7rem
+  +mediaQuery768()
+    margin-top 8.5rem
+  +mediaQuery1024()
+    margin-top 9.5rem
+  +mediaQuery1440()
+    margin-top 13.5rem
+marg-bott()
+  margin-bottom 7rem
+  +mediaQuery768()
+    margin-bottom 8.5rem
+  +mediaQuery1024()
+    margin-bottom 9.5rem
+  +mediaQuery1440()
+    margin-bottom 13.5rem
+
+marg-top-fs()
+  margin-top 4rem
+  +mediaQuery768()
+    margin-top (gap*2)
+
+marg-bott-fs()
+  margin-bottom 4rem
+  +mediaQuery768()
+    margin-bottom (gap*2)
+
+// Добавил для modullawyer, надо переделать
+marg-top-null()
+  margin-top 0
+
+marg-bott-null()
+  margin-bottom 0
+
+// Link Semibold
+link-semibold()
+  font-weight 600
+  line-height 120%
+  +mediaQuery768()
+    line-height 129%
+  +mediaQuery1024()
+    line-height 125%
+
+p()
+  margin-top 0
+  margin-bottom 0
+  &:not(:first-of-type)
+    margin-top 2rem
+  &:not(:last-of-type)
+    margin-bottom 2rem
+
+default-link()
+  a
+  a:visited
+    color var(--mb-blue-primary)
+  a
+    link-semibold()
+    transition color .3s
+    &:hover
+      color var(--mb-blue-hover)
+
+default-link-white()
+  a
+  a:visited
+    color #fff
+    text-decoration underline
+  a
+    transition color .3s
+    &:hover
+      color rgba(#fff, 0.4)

@@ -1,0 +1,27 @@
+{
+  "component": "FirstScreen",
+  "title": "Маквала Хатиашвили <br> приглашает вас <br>в Модульбанк!",
+  "desc": "Маквала получит месяц бесплатного обслуживания, а&nbsp;вы&nbsp;&mdash; бонус на&nbsp;выбор:",
+  "items":[
+    "1&nbsp;месяц со&nbsp;скидкой 100% на&nbsp;Оптимальном тарифе",
+    "1&nbsp;месяц со&nbsp;скидкой&nbsp;50% на&nbsp;Безлимитном тарифе"
+  ],
+  "source": [
+    {
+      "type": "image/png",
+      "srcset": "/src/assets/images/FirstScreen/FirstScreen-1024.png, /src/assets/images/FirstScreen/FirstScreen-1024@2x.png 2x",
+      "media": "(min-width: 1024px) and (max-width: 1439px)"
+    }
+  ],
+  "image": {
+    "src": "/src/assets/images/FirstScreen/FirstScreen.png",
+    "srcset": "/src/assets/images/FirstScreen/FirstScreen@2x.png 2x"
+  },
+  "button": {
+    "text": "Получить скидку",
+    "to": "#form"
+  },
+  "params": {
+    "class": "mt-3 mt-md-6 marg-bott"
+  }
+}

@@ -1,0 +1,52 @@
+---
+interface Props {
+	title: string
+}
+
+const {title = 'friends.modulbank'} = Astro.props as Props
+
+// компоненты (по готовности переделать в 1 json)
+import Menu from '../components/Header.vue';
+import MenuData from '../assets/data/Header.json';
+import FirstScreen from '../components/FirstScreen.vue';
+import FirstInfo from '../assets/data/FirstSection.json';
+import Card from '../components/common/Card.vue';
+import CardInfo from '../assets/data/Card.json';
+import ImageText from '../components/common/imageText.vue';
+import DataImageText from '../assets/data/DataImageText.json';
+import Footer from '../components/common/Footer.vue';
+import FooterInfo from '../assets/data/Footer.json';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+        <Menu data={MenuData}/>
+		<FirstScreen FirstInfo={FirstInfo}/>
+		<Card CardInfo={CardInfo}/>
+		<ImageText data={DataImageText}/>
+		<Footer data={FooterInfo}/>
+		<slot/>
+	</body>
+</html>
+
+<style lang="stylus" is:global>
+
+body {
+    margin: 0 auto
+	height: 100%
+    display: flex
+    flex-direction: column
+    font-size: 1.6rem
+    font-weight: 400
+	font-family: 'Montserrat'
+	font-style: normal
+	background-color: #F5F5F6
+}
+</style>

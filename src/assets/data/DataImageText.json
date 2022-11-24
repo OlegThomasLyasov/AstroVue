@@ -1,0 +1,16 @@
+{
+    "source": [
+        
+      ],
+      "image": {
+        "src": "/src/assets/images/ImageText/ImageText.png",
+        "srcset": "/src/assets/images/ImageText/ImageText@2x.png 2x"
+    },
+    "title": "Преимущества <br> расчётного счёта",
+    "desc": "Лучшие возможности для бизнеса",
+    "items": [
+      "Откроем счёт за&nbsp;5&nbsp;минут",
+      "Бесплатное снятие наличных до&nbsp;500&nbsp;000&nbsp;₽",
+      "До&nbsp;6% на&nbsp;остаток по&nbsp;счёту"
+    ]
+}

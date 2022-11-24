@@ -1,0 +1,11 @@
+{
+    "title": "Модульбанк",
+    "logo":"/src/assets/images/icons/Logo.png",
+    "icons":[
+        "/src/assets/images/icons/vk.png",
+        "/src/assets/images/icons/ok.png",
+        "/src/assets/images/icons/twitter.png",
+        "/src/assets/images/icons/youtube.png",
+        "/src/assets/images/icons/tg.png"
+    ]
+}

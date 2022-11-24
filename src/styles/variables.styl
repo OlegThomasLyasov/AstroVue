@@ -1,0 +1,195 @@
+img = '~assets/images/'
+
+// Prefix for :root CSS variables
+
+$variable-prefix = mb- !default
+
+// FONTS
+font-family-sans-serif = 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+font-family-monospace = SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+$font-family-base = font-family-sans-serif
+
+// SIZES
+ultraBold = 900
+bold = 700
+medium = 500
+regular = 400
+light = 300
+ultraLight = 200
+thin = 100
+
+// GRID
+gap-mob = 1.5rem
+gap = 3rem
+grid-md = 76.8rem
+grid-lg = 108rem
+grid-xl = 119.9rem // 123rem
+desktop = grid-xl
+
+// COLORS
+
+$blue-primary = #0057FF
+$blue-hover = #0075FF
+$blue-disabled = rgba($blue-primary, .35)
+$blue-015 = rgba($blue-primary, .15)
+
+$green-primary = #82D641
+$green-hover = #82E03A
+$green-disabled = rgba($green-primary, .35)
+$green-015 = rgba($green-primary, .15)
+
+
+// цвета страницы МодульЮрист
+$lawyer-primary = #00885C
+$lawyer-hover = #009F6C
+$lawyer-disabled = rgba($lawyer-primary, .35)
+$lawyer-015 = rgba($lawyer-primary, .15)
+
+$orange-primary = #FF7737
+$orange-hover = #FF6813
+$orange-disabled = rgba($orange-primary, .35)
+$orange-015 = rgba($orange-primary, .15)
+
+$dark-primary = #080D13
+$dark-secondary = rgba($dark-primary, .65)
+$dark-terteriary = rgba($dark-primary, .35)
+$dark-pale = rgba($dark-primary, .10)
+$dark-background = #F5F5F6
+
+$light-primary = #FFFFFF
+$light-secondary = rgba($light-primary, .6)
+$light-terteriary = rgba($light-primary, .3)
+$light-background = rgba($light-primary, .05)
+
+$system-error = #F24F4F
+$system-error-015 = rgba($system-error, .35)
+$system-success = #76D92A
+$system-success-015 = rgba($system-success, .35)
+
+$brand-blue = #2042AB
+$brand-blue-light = #3C69F3
+$brand-blue-gradient = linear-gradient(121.98deg, #284CBC 40.11%, #4873F2 92.3%)
+$brand-orange-gradient = linear-gradient(315deg, #FD8A28 0%, #FD6554 100%)
+
+colors = {
+  'blue-primary': $blue-primary
+  'blue-hover': $blue-hover
+  'blue-disabled': $blue-disabled
+  'blue-015': $blue-015
+  'green-primary': $green-primary
+  'green-hover': $green-hover
+  'green-disabled': $green-disabled
+  'green-015': $green-015
+  'lawyer-primary': $lawyer-primary // цвета страницы МодульЮрист
+  'lawyer-hover': $lawyer-hover
+  'lawyer-disabled': $lawyer-disabled
+  'lawyer-015': $lawyer-015
+  'orange-primary': $orange-primary
+  'orange-hover': $orange-hover
+  'orange-disabled': $orange-disabled
+  'orange-015': $orange-015
+  'dark-primary': $dark-primary
+  'dark-secondary': $dark-secondary
+  'dark-terteriary': $dark-terteriary
+  'dark-background': $dark-background
+  'dark-pale': $dark-pale
+  'light-primary': $light-primary
+  'light-secondary': $light-secondary
+  'light-terteriary': $light-terteriary
+  'light-background': $light-background
+  'system-error': $system-error
+  'system-error-015': $system-error-015
+  'system-success': $system-success
+  'system-success-015': $system-success-015
+  'brand-blue': $brand-blue
+  'brand-blue-light': $brand-blue-light
+}
+
+// colors TODO: DEPRECATED, не использовать!
+blue-v2 = $blue-primary
+green-v2 = $green-primary
+orange10-v2 = #FF5C00
+orange-v2 = $orange-primary
+blue000 = #253C77
+blue100 = #1B3E71
+blue200 = #4971D0
+green000 = #8CCA11
+green100 = #A0D63F
+orange000 = #FE7A3C
+orange100 = #EE8249
+orange200 = #FD6F4A
+gray = #B0B8CD
+gray000 = #B0B8CD
+gray050 = #F5F8FF
+gray100 = #EDF1F8
+gray200 = #EFF4FF
+gray300 = #F8FAFF
+gray400 = #9FA7B4
+red = #DC3030
+bg-color = #F8FAFF
+bg-color-v2 = $dark-background
+fb-brand-color = #4267B2
+vk-brand-color = #4680C2
+telegram-brand-color = #58A4D4
+viber-brand-color = #77549B
+whatsapp-brand-color = #64CD71
+black-v2 = $dark-primary
+gray-v2 = #7F8285
+camry-violet = #572FF9
+camry-gray-100 = #151719
+camry-gray-200 = #282A2B
+camry-gray-300 = #686A6B
+camry-gray-400 = #878889
+
+main-color = black-v2
+secondary-color = green000
+main-text-color = main-color
+
+// gradients
+gradient-green = linear-gradient(174.5deg, #A4D73E 13.39%, #88BD1F 86.61%)
+gradient-green-active = linear-gradient(0deg, #88BD1F, #88BD1F), linear-gradient(174.5deg, #A4D73E 13.39%, #88BD1F 86.61%)
+
+gradient-gray = linear-gradient(0deg, bg-color, bg-color),
+  linear-gradient(135deg, #ED6A62 -1%, #EE8D3C 75%),
+  linear-gradient(0deg, #A3DD07, #A3DD07), #C4C4C4
+
+gradient-orange = $brand-orange-gradient
+
+// SHADOWS
+base-shadow = 0px 4px 15px rgba($dark-primary, 0.03)
+blue-shadow = 0px 6px 10px rgba($blue-primary, 0.15)
+green-shadow = 0px 6px 10px rgba($green-primary, 0.15)
+lawyer-shadow = 0px 6px 10px rgba($lawyer-primary, 0.15) // цвета страницы МодульЮрист
+orange-shadow = 0px 6px 10px rgba($orange-primary, 0.15)
+image-shadow = 0 4px 15px rgba(8, 13, 19, 0.03)
+
+
+// ELEMENTS
+input-bg-color = gray200
+input-height-mob = 5rem
+input-height = 6rem
+button-height-small = 4.4rem
+button-height-medium = 5rem
+button-height-large = input-height
+placeholder-color = gray
+
+// HEADER
+header-height = 6rem
+header-bg-color = blue000
+header-page-height = header-height
+
+// FOOTER
+footer-height = 22.1rem
+
+// z-index
+zindex-header = 4
+zindex-header-fade = 3
+zindex-header-page = 3
+zindex-stories-overlay = 99
+zindex-stories-popup = 100
+zindex-stories-popup-close = 4
+zindex-close-btn = 1000
+zindex-overlay = 4
+zindex-modal = 10
+zindex-modal-overlay = 100
+zindex-popup-icon = 9999

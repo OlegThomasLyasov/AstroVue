@@ -1,0 +1,585 @@
+*
+  box-sizing border-box
+
+html
+  height 100%
+  font-size 62.5%
+  font-family var(--mb-font-family-base)
+  color var(--mb-dark-primary)
+  --cards-min-height 24rem
+  & > div[style]
+    display none !important
+
+body
+  height 100%
+  display flex
+  flex-direction column
+  font-size 1.6rem
+  font-weight regular
+  text-rendering optimizeLegibility
+  -webkit-font-smoothing antialiased
+  font-smoothing antialiased
+
+a
+  text-decoration none
+  -webkit-tap-highlight-color rgba(255, 255, 255, 0)
+
+a
+button
+  outline 0 none
+
+
+
+// Typography
+
+
+h1, h2, h3, h4, h5
+  letter-spacing -0.02em
+
+h1
+.h1 // в слайдере на первом экране h2.h1
+  font-size 2.2rem
+  line-height 120%
+  +mediaQuery768()
+    font-size 2.8rem
+  +mediaQuery1024()
+    font-size 3.6rem
+
+h2
+  font-size 2.2rem
+  line-height 120%
+  +mediaQuery768()
+    font-size 2.4rem
+  +mediaQuery1024()
+    font-size 3rem
+h3
+  font-size 1.8rem
+  line-height 120%
+  +mediaQuery768()
+    font-size 2.1rem
+  +mediaQuery1024()
+    font-size 2.4rem
+h4
+  font-size 1.6rem
+  line-height 120%
+  +mediaQuery768()
+    font-size 1.8rem
+  +mediaQuery1024()
+    font-size 2rem
+h5
+  font-size 1.4rem
+  line-height 150%
+  +mediaQuery768()
+    font-size 1.6rem
+
+h2, h3, h4, h5
+  margin 0
+
+.subtitle
+  default-link()
+  color var(--mb-dark-secondary)
+  font-size 1.4rem
+  line-height 150%
+  +mediaQuery768()
+    font-size 1.6rem
+  +mediaQuery1024()
+    font-size 1.8rem
+
+// Text Regular
+.p
+  p()
+  default-link()
+  font-weight 400
+  font-size 1.4rem
+  line-height 150%
+  letter-spacing -0.02em
+  color var(--mb-dark-secondary)
+  .a
+    color var(--mb-dark-secondary)
+    text-decoration underline
+
+.ul
+  margin-top 2rem
+  margin-bottom 2rem
+  margin-left 2rem
+  padding-left 0
+
+.li
+  list-style-type "\2022"
+  padding-left 1rem
+  &.margin
+    &:not(:first-of-type)
+      margin-top 2rem
+    &:not(:last-of-type)
+      margin-bottom 2rem
+
+.text-semibold
+.link-bold
+.link-semibold
+  font-size 1.4rem
+  letter-spacing -0.02em
+
+// Text Semibold
+.text-semibold
+  font-weight 600
+  line-height 150%
+
+// Link Bold
+.link-bold
+  font-weight 700
+  line-height 120%
+  +mediaQuery768()
+    line-height 129%
+  +mediaQuery1024()
+    font-size 1.6rem
+    line-height 125%
+
+// Link Semibold
+.link-semibold
+  link-semibold()
+  +mediaQuery1024()
+    font-size 1.6rem
+
+// Input
+
+// Label
+.label
+  font-weight 600
+  font-size 10px
+  line-height 150%
+  letter-spacing 0.15em
+  text-transform uppercase
+  color var(--mb-dark-primary)
+  +mediaQuery1024()
+    font-size 11px
+    line-height 136%
+    letter-spacing 0.03em
+
+// Description
+.description
+  font-weight 400
+  font-size 1rem
+  line-height 150%
+  letter-spacing -0.02em
+  +mediaQuery768()
+    font-size 1.2rem
+
+.tariffs-cell-title
+  display flex
+  align-items center
+  position relative
+
+  &:before
+    position relative
+    top -.1rem
+    content ''
+    height .7rem
+    width .7rem
+    border-radius 50%
+    margin-right .7rem
+
+  &.blue-primary
+    &:before
+      background-color var(--mb-blue-primary)
+
+  &.green-primary
+    &:before
+      background-color var(--mb-green-primary)
+
+  &.dark-primary
+    &:before
+      background-color var(--mb-dark-primary)
+
+  &.orange-primary
+    &:before
+      background-color var(--mb-orange-primary)
+
+  &.lawyer-primary
+    &:before
+      background-color var(--mb-lawyer-primary)
+
+[type=email],
+[type=tel],
+[type=text]
+  padding-right 16px
+  padding-left 16px
+  background input-bg-color
+  border 0 none
+  height input-height-mob
+  line-height normal
+  color blue000
+  width 100%
+  font-size 1.6rem
+  font-weight 600
+  &:focus
+    outline none
+  &::placeholder
+    color placeholder-color
+  +mediaQuery768()
+    height input-height
+    font-size 1.8rem
+[type=checkbox]
+  display inline-block
+input::-ms-clear
+  display none
+
+label
+  font-size 15px
+  color gray000
+// @supports (display: grid)
+//   .grid
+//     display grid
+.container
+  container()
+  padding-left gap-mob
+  padding-right gap-mob
+  +mediaQuery600()
+    padding-left gap
+    padding-right gap
+  +mediaQuery1440()
+    padding-left 0
+    padding-right 0
+  &.lg
+    max-width grid-lg
+.container_full
+  container()
+  +mediaQuery600()
+    padding-left gap
+    padding-right gap
+  +mediaQuery1440()
+    padding-left 0
+    padding-right 0
+  &.lg
+    max-width grid-lg
+.section
+  +mediaQuery768()
+    margin-top 30px
+    margin-bottom 30px
+
+// TODO: временный контейнер новой дизайн системы
+.container2
+  container2()
+
+.padd-top
+  padd-top()
+.padd-bott
+  padd-bott()
+.marg-top
+  marg-top()
+.marg-bott
+  marg-bott()
+
+.padd
+  padd-top()
+  padd-bott()
+.marg
+  marg-top()
+  marg-bott()
+
+.marg-top-fs
+  marg-top-fs()
+
+.marg-bott-fs
+  marg-bott-fs()
+
+.marg-fs
+  marg-top-fs()
+  marg-bott-fs()
+
+.marg-top-null
+  marg-top-null()
+
+.marg-bott-null
+  marg-bott-null()
+
+.marg-null
+  marg-top-null()
+  marg-bott-null()
+
+
+.padd-top-black
+  padding-top 10rem
+  +mediaQuery768()
+    padding-top 20rem
+  +mediaQuery1024()
+    padding-top 22.5rem
+  +mediaQuery1440()
+    padding-top 25rem
+
+.page-enter-active, .page-leave-active
+  transition opacity .3s ease-in
+.page-enter, .page-leave-active
+  opacity 0
+
+.fade-enter-active, .fade-leave-active
+  transition opacity .3s
+.fade-enter, .fade-leave-to
+  opacity 0
+
+.fastfade-enter-active, .fastfade-leave-active
+  transition opacity .1s
+.fastfade-enter, .fastfade-leave-to /* .fade-leave-active до версии 2.1.8 */
+  opacity 0
+
+.slide-fade-enter-active, .slide-fade-leave-active
+  transition opacity .3s
+.slide-fade-enter, .slide-fade-leave-to
+  opacity 0
+
+.aside-enter-active, .aside-leave-active
+  transition transform .3s
+.aside-enter, .aside-leave-to /* .fade-leave-active до версии 2.1.8 */
+  transform translateX(100%)
+
+.link
+  cursor pointer
+  letter-spacing -0.02em
+  transition opacity 0.3s
+  &:hover
+    opacity 0.3
+
+.color-gray
+  color gray000
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next
+  display none
+  margin-top -5.5rem
+  width 4rem
+  height 4rem
+  background-size 1.4rem 2.2rem
+  background-image url("data:image/svg+xml,%3Csvg width='14' height='22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 0L0 11l14 11V0z' fill='%23C4C4C4'/%3E%3Cpath d='M14 0L0 11l14 11V0z' fill='%23A3DD07'/%3E%3Cpath d='M14 0L0 11l14 11V0z' fill='url(%23paint0_linear)'/%3E%3Cpath d='M14 0L0 11l14 11V0z' fill='url(%23paint1_linear)'/%3E%3Cpath d='M14 0L0 11l14 11V0z' fill='url(%23paint2_linear)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear' x1='-3.64' y1='16.72' x2='11.51' y2='7.08' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23ED6A62'/%3E%3Cstop offset='1' stop-color='%23EE8D3C'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear' y1='22' x2='19.93' y2='9.32' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23C4D40F'/%3E%3Cstop offset='1' stop-color='%2386E2B0'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint2_linear' x1='3.5' y1='20.53' x2='16.14' y2='6.59' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23A4D73E'/%3E%3Cstop offset='1' stop-color='%2388BD1F'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E")
+  @media(min-width: 1024px)
+    display block
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev
+  display none
+  margin-top -5.5rem
+  width 4rem
+  height 4rem
+  background-size 1.4rem 2.2rem
+  background-image url("data:image/svg+xml,%3Csvg width='14' height='22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l14 11L0 22V0z' fill='%23C4C4C4'/%3E%3Cpath d='M0 0l14 11L0 22V0z' fill='%23A3DD07'/%3E%3Cpath d='M0 0l14 11L0 22V0z' fill='url(%23paint0_linear)'/%3E%3Cpath d='M0 0l14 11L0 22V0z' fill='url(%23paint1_linear)'/%3E%3Cpath d='M0 0l14 11L0 22V0z' fill='url(%23paint2_linear)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear' x1='17.64' y1='16.72' x2='2.49' y2='7.08' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23ED6A62'/%3E%3Cstop offset='1' stop-color='%23EE8D3C'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear' x1='14' y1='22' x2='-5.93' y2='9.32' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23C4D40F'/%3E%3Cstop offset='1' stop-color='%2386E2B0'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint2_linear' x1='10.5' y1='20.53' x2='-2.14' y2='6.59' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23A4D73E'/%3E%3Cstop offset='1' stop-color='%2388BD1F'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E")
+  @media(min-width: 1024px)
+    display block
+.swiper-button-disabled
+    opacity 0.3
+.swiper-pagination-bullet
+    background gray
+    flex-shrink 0
+    border-radius 0
+    opacity 1
+    width .5rem
+    height .5rem
+    &:not(:last-child)
+      margin-right 2.5rem!important
+.swiper-pagination-bullet-active
+    background gradient-green
+.swiper-circle-button-prev,
+.swiper-circle-button-next
+    height 5.2rem
+    width 5.2rem
+    position absolute
+    top 50%
+    outline none
+    cursor pointer
+    background-repeat: no-repeat
+.swiper-circle-button-prev
+  left 0
+  background-image url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Ccircle cx='26' cy='25' r='22' fill='white'/%3E%3C/g%3E%3Cpath d='M21 25L28.5 18.9378L28.5 31.0622L21 25Z' fill='url(%23paint0_linear)'/%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='0' width='52' height='52' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='1'/%3E%3CfeGaussianBlur stdDeviation='2'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.286275 0 0 0 0 0.443137 0 0 0 0 0.815686 0 0 0 0.1 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear' x1='21.6692' y1='28.5006' x2='31.5395' y2='24.4301' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23A3DB33'/%3E%3Cstop offset='1' stop-color='%2384C209'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A")
+.swiper-circle-button-next
+  right 0
+  background-image url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d)'%3E%3Ccircle r='22' transform='matrix(-1 0 0 1 26 25)' fill='white'/%3E%3C/g%3E%3Cpath d='M31 25L23.5 18.9378L23.5 31.0622L31 25Z' fill='url(%23paint0_linear)'/%3E%3Cdefs%3E%3Cfilter id='filter0_d' x='0' y='0' width='52' height='52' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'/%3E%3CfeOffset dy='1'/%3E%3CfeGaussianBlur stdDeviation='2'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.286275 0 0 0 0 0.443137 0 0 0 0 0.815686 0 0 0 0.1 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear' x1='30.3308' y1='28.5006' x2='20.4605' y2='24.4301' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23A3DB33'/%3E%3Cstop offset='1' stop-color='%2384C209'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A")
+input
+  &[type=range]
+    -webkit-appearance none
+    width 100%
+    margin -0.35rem 0 1rem
+    &:focus
+      outline none
+    &::-webkit-slider-runnable-track
+      width 100%
+      height 0px
+      cursor pointer
+      background transparent
+    &::-webkit-slider-thumb
+      border 0.5rem solid green000
+      height 2rem
+      width 2rem
+      border-radius 50%
+      background #ffffff
+      cursor pointer
+      -webkit-appearance none
+      margin-top .5rem
+    &:focus::-webkit-slider-runnable-track
+      background transparent
+    &::-moz-range-track
+      width 100%
+      height 2px
+      cursor pointer
+      background transparen
+      border-radius 0
+    &::-moz-range-thumb
+      border 0.5rem solid green000
+      height 1rem
+      width 1rem
+      border-radius 50%
+      background #fff
+      cursor pointer
+      transform translateY(.5rem)
+    &::-moz-focus-outer
+      border none
+    &::-ms-track
+      width 2rem
+      height 2rem
+      cursor pointer
+    &::-ms-thumb
+      border 0.3rem solid green000
+      height 0.7rem
+      width 0.7rem
+      border-radius 50%
+      background #fff
+      margin-top 2rem
+      transform translateY(-1.5rem)
+      cursor pointer
+
+.content
+  margin 0
+  padding 0
+  ul
+    margin 0
+    padding 0
+  li
+    list-style none
+    padding-left 2rem
+    position relative
+    &:before
+      position absolute
+      top 0.8rem
+      left 0
+      content ''
+      display block
+      width 0.5rem
+      height 0.5rem
+      background linear-gradient(150deg, #A3DB33 15%, #84C209 85%)
+  .img
+    width 100%
+    display block
+    margin 2rem 0
+    height auto
+
+fs()
+  color #fff
+  position relative
+  &:after
+    content ''
+    position absolute
+    width 100%
+    background-size contain
+    background-repeat no-repeat
+    top 0
+    +mediaQuery768()
+      background-image url('/images-new/rko/lines-mob.svg'), linear-gradient(150deg, main-color 12.5%, blue200 100%)
+      right 0
+      background-position 100% 0
+    +mediaQueryM768()
+      background-image url('/images-new/rko/lines.svg'), linear-gradient(150deg, main-color 12.5%, blue200 100%)
+      background-position 50% 100%
+// класс для длинного FirstScreen
+.fs
+  fs()
+// класс для короткого FirstScreen
+.fs-s
+  fs()
+  &:after
+    background-position 50% 10%
+    background-size cover
+// класс для FirstScreen без сетки
+.fs-w
+  fs()
+  &:after
+    background-image linear-gradient(150deg, main-color 12.5%, blue200 100%)
+    +mediaQuery768()
+      background-image linear-gradient(150deg, main-color 12.5%, blue200 100%)
+
+.dashedLink
+  position relative
+  white-space nowrap
+  transition color .3s
+  font-size 1.4rem
+  font-weight bold
+  line-height 1.8rem
+  color main-color
+  &:hover
+    color secondary-color
+    &:after
+      border-bottom-color secondary-color
+  &:after
+    transition border-bottom-color .2s
+    content ' '
+    position absolute
+    left 0
+    bottom -2px
+    width 100%
+    border-bottom 1.5px dashed main-color
+
+.hide-mobile
+  display none!important
+  +mediaQuery1024()
+    display inherit!important
+.hide-tablet
+  display none!important
+  +mediaQuery768()
+    display inherit!important
+.hide-desktop
+  display inherit!important
+  +mediaQuery1024()
+    display none!important
+.show-1440
+  display none!important
+  +mediaQuery1440()
+    display inherit!important
+
+/**
+ * Atomic CSS
+ */
+
+.font-extrabold
+  font-weight 800
+
+.br-320
+  display none
+.br-768
+  display none
+  +mediaQuery768()
+    display block
+.br-1024
+  display none
+  +mediaQuery1024()
+    display block
+
+.color-blue-primary
+  color var(--mb-blue-primary)
+
+.color-lawyer-primary
+  color var(--mb-lawyer-primary)
+
+.color-green-primary
+  color var(--mb-green-primary)
+
+.color-dark-terteriary
+  color var(--mb-dark-terteriary)
+
+.rounded-tl
+  border-top-left-radius 1rem
+.rounded-tr
+  border-top-right-radius 1rem
+.rounded-bl
+  border-bottom-left-radius 1rem
+.rounded-br
+  border-bottom-right-radius 1rem
+  border-bottom-right-radius 1rem
+
+.tracking-tight
+  letter-spacing -0.02em
+
+// стиль для carrotquest ниже попапа (100), выше хедера
+.carrotquest-css-reset
+  position relative !important
+  z-index 99 !important
