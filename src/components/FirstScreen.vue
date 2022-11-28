@@ -28,14 +28,19 @@ export default {
 
 .wrapper
   background linear-gradient(276.85deg, #DFDFDF 0%, #EDEDED 100%)
-  border-radius 1.2rem
+  border-radius 15px
   display flex
   justify-content space-between
-  height auto 
+  height auto
+  margin 40px 16px 96px 16px
+  flex-direction column 
+  +mediaQuery768()
+    flex-direction row
+    margin 60px 30px 115px 30px
   +mediaQuery1024()
-    margin 60px 30px 135px 30px
+    margin 60px 30px 125px 30px
   +mediaQuery1440()
-    margin 60px 120px 135px 120px
+    margin 60px 120px 165px 120px
 .image-wrap 
   margin auto auto
 </style>

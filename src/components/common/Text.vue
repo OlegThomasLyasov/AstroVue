@@ -28,16 +28,28 @@ export default {
 .text-wrap
     display flex
     flex-direction column
-    padding 30px 0rem 30px 30px
+    padding 0px 16px 70px 16px
+    +mediaQuery768()
+      padding 0px 50px 85px 50px
+    +mediaQuery1024()
+      padding 30px 60px 95px 60px  
 .title
-    margin 0 0 20px
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 120%;
+    margin 0 0 15px
+    font-weight 700
+    font-size 22px
+    line-height 120%
+    +mediaQuery768()
+      font-size 24px 
+    +mediaQuery1024() 
+      font-size 30px   
 .desc
     font-weight 400
-    font-size 1.4rem
+    font-size 14px
     line-height 150%
     color rgba(8, 13, 19, 0.65)
     margin-bottom 31px
+    +mediaQuery768()
+      font-size 16px
+    +mediaQuery1024()
+      font-size 14px  
 </style>

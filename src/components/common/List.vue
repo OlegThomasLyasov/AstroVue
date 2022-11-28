@@ -24,17 +24,17 @@ export default {
 
 <style lang="stylus" module>
 .item
-  padding-top 2rem
-  padding-bottom 2rem
+  padding-top 20px
+  padding-bottom 20px
 .ul
   list-style-type none
   padding 0
   margin 0
 .li
-  font-size 1.4rem
-  line-height 1.4
-  margin 0 0 1.5rem
-  padding 0 0 0 2.5rem
+  font-size 14px
+  line-height 175%
+  margin 0 0 15px
+  padding 0 0 0 39px
   font-weight 400
   color #080D13A6
 .ul .li {

@@ -25,14 +25,18 @@ export default {
 
 <style lang="stylus" module>
 .wrapper
-    padding 0 222px
     display flex
-    flex-direction row
+    flex-direction column-reverse
     +mediaQuery1024()
-      padding 0 30px
+      flex-direction row
+      padding 0 60px
     +mediaQuery1440()
-      padding 0 120px
+      padding 0 222px
 .image-wrap
-    margin auto auto
+    margin-bottom 30px
+    +mediaQuery768()
+      margin-bottom 53px
+    +mediaQuery1024()
+      margin 0
 
 </style>

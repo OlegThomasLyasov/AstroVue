@@ -33,12 +33,17 @@ export default {
 .container
     display flex
     justify-content space-between
-    align-items center
-    height: 80px
-    +mediaQuery1024()
-        padding 0 30px
+    align-items start
+    height 138px
+    flex-direction column
+    padding 20px 0 16px 16px
+    +mediaQuery768()
+       height 80px
+       align-items center
+       flex-direction row
+       padding 0 30px
     +mediaQuery1440()
-        padding 0 120px
+      padding 0 120px
 
 .mainTitle
     display flex

@@ -35,6 +35,7 @@ export default {
   justify-content space-between
   align-items center
   height: 60px
+  padding 0 16px
   +mediaQuery1024()
         padding 0 30px
     +mediaQuery1440()
@@ -53,6 +54,9 @@ export default {
   align-items center
 
 .desc
-  margin-left 18px
+  display none
+  +mediaQuery768()
+    display block
+    margin-left 18px
 
 </style>
