@@ -3,13 +3,15 @@ section
   div(:class="$style.row")
     div(v-for="(item,index) in CardInfo.items" :class="$style.cardWrapper" :key="index")
       div(:class="$style.CardIcon")
-          img(:class="$style.Icon" :src="item.icon" alt="")
+        IconsVue(:class="$style.Icon" :data="item.icon")
       div(:class="$style.textBox")  
         div(:class="$style.MainText" v-html="item.title")
         div(:class="$style.desc" v-html="item.text")
 </template>
 
 <script lang="ts">
+import IconsVue from './Icons.vue';
+
 export default {
   props: {  
     CardInfo: {
@@ -17,6 +19,9 @@ export default {
       required: true
     },
   },
+  components:{
+    IconsVue
+  }
 }
 </script>
 <style lang="stylus" module>
@@ -62,9 +67,6 @@ section
   display flex
   align-items center
   justify-content: center
-.Icon
-  width 21.33px
-  height 26.67px
 .MainText 
   font-weight: 700
   font-size 14px

@@ -5,6 +5,7 @@ div(:class="$style['text-wrap']")
     List(
         v-if="data.items"
         :data="data.items"
+        :type="data.type"
     )
 </template>
     

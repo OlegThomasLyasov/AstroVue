@@ -31,6 +31,7 @@ export default  {
   letter-spacing -0.02em
   box-shadow: 0px 6px 10px rgba(0, 87, 255, 0.15)
   border none
+  cursor pointer
   +mediaQuery768()
     width 172px
     height 48px

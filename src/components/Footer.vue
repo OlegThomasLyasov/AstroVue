@@ -2,21 +2,25 @@
 footer(:class="$style.footer")
     div(:class="$style.container")
         div(:class="$style.mainTitle")
-            img(:src="data.logo" alt="")
+            IconsVue(:data="data.logo")
             div(:class="$style.title" v-html="data.title")
         div(:class="$style.icons")
-            div(v-for="(item, index) in data.icons" :key="index")
-                img(:src="item" :class="$style.icon")
+            div(v-for="(item, index) in data.icons" :key="index" :class="$style.icon")
+                IconsVue(:data="item")
 </template>
 
 <script lang="ts">
+import IconsVue from './common/Icons.vue';
 export default {
     props: {  
-    data: {
-        type: Object,
-        required: true
+        data: {
+            type: Object,
+            required: true
+        },
     },
-    }
+    components: {
+        IconsVue
+    },
 }
 
 </script>
@@ -58,8 +62,8 @@ export default {
     align-items center
     margin-top 10px
 .icon
-    width 40px
-    height 40px
-    margin-right 10px
+    cursor pointer
+    &:not(:last-child)
+        margin-right 10px
 
 </style>

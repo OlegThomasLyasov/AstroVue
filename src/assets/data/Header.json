@@ -1,6 +1,6 @@
 {
   "title":"Модульбанк",
-  "logo":"/src/assets/images/icons/Logo.png",
-  "telLogo":"/src/assets/images/icons/tel.png",
+  "logo":"logo",
+  "telIcon":"tel",
   "tel":"8 961 204 12 59"
 }

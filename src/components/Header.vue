@@ -2,20 +2,24 @@
 header(:class="$style.header")
   div(:class="$style.container")
     div(:class="$style.mainTitle")
-      img(:src="data.logo" alt="")
+      IconsVue(:data="data.logo")
       div(:class="$style.title" v-html="data.title")
     div(:class="$style.InfoTel")
-      img(:src="data.telLogo" alt="")
+      IconsVue(:data="data.telIcon")
       div(:class="$style.desc"  v-html="data.tel")
 </template>
 
 <script lang="ts">
+import IconsVue from './common/Icons.vue';
 export default {
   props: {  
     data: {
       type: Object,
       required: true
     },
+  },
+  components: {
+    IconsVue
   }
 }
 
@@ -45,7 +49,8 @@ export default {
   display flex
   align-items center
   font-size 15px
-
+  font-weight 700
+  line-height 150%
 .title
   margin-left 8.3px
 
@@ -58,5 +63,7 @@ export default {
   +mediaQuery768()
     display block
     margin-left 18px
-
+    font-weight 700
+    font-size 16px
+    line-height 125%
 </style>
