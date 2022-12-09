@@ -2,25 +2,25 @@
     "source": [
       {
         "type": "image/png",
-        "srcset": "/src/assets/images/ImageText/ImageText-320.png, /src/assets/images/ImageText/ImageText-320@2x.png 2x",
+        "srcset": "/src/assets/images/ImageText/ImageText-320.webp, /src/assets/images/ImageText/ImageText-320@2x.webp 2x",
         "media": "(max-width: 767px)"
       },
       {
         "type": "image/png",
-        "srcset": "/src/assets/images/ImageText/ImageText-768.png, /src/assets/images/ImageText/ImageText-768@2x.png 2x",
+        "srcset": "/src/assets/images/ImageText/ImageText-768.webp, /src/assets/images/ImageText/ImageText-768@2x.webp 2x",
         "media": "(min-width: 768px) and (max-width: 1023px)"
       },
       {
         "type": "image/png",
-        "srcset": "/src/assets/images/ImageText/ImageText-1024.png, /src/assets/images/ImageText/ImageText-1024@2x.png 2x",
+        "srcset": "/src/assets/images/ImageText/ImageText-1024.webp, /src/assets/images/ImageText/ImageText-1024@2x.webp 2x",
         "media": "(min-width: 1024px) and (max-width: 1439px)"
       }
       ],
       "image": {
-        "src": "/src/assets/images/ImageText/ImageText.png",
-        "srcset": "/src/assets/images/ImageText/ImageText@2x.png 2x"
+        "src": "/src/assets/images/ImageText/ImageText.webp",
+        "srcset": "/src/assets/images/ImageText/ImageText@2x.webp 2x"
     },
-    "title": "Преимущества расчётного счёта",
+    "title": "Преимущества расчётного&nbsp;счёта",
     "desc": "Лучшие возможности для бизнеса",
     "type": "is-number",
     "items": [

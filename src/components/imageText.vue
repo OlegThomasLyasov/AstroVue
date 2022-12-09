@@ -27,11 +27,15 @@ export default {
 .wrapper
     display flex
     flex-direction column-reverse
+    margin 70px 16px 72px
+    justify-content space-between
+    +mediaQuery768()  
+      margin 85px 50px 87px
     +mediaQuery1024()
       flex-direction row
-      padding 0 60px
+      margin 95px 60px 118px
     +mediaQuery1440()
-      padding 0 222px
+      margin 146px 222px
 .image-wrap
     margin-bottom 30px
     +mediaQuery768()

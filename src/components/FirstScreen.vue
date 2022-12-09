@@ -1,8 +1,8 @@
 <template lang="pug">
 div(:class="$style.wrapper" v-once)
-  FirstScreenText(:data="FirstInfo")
+  FirstScreenText(:data="data")
   div(:class="$style['image-wrap']")
-    Img(:options="FirstInfo.image" :source="FirstInfo.source" :Islazy="true")
+    Img(:options="data.image" :source="data.source" :Islazy="true")
 </template>
 
 <script lang="ts">
@@ -12,7 +12,7 @@ import FirstScreenText from './common/FirstScreenText.vue';
 
 export default {
   props: {  
-    FirstInfo: {
+    data: {
       type: Object,
       required: true
     },

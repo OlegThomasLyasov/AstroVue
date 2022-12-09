@@ -31,15 +31,18 @@ export default {
 
 .li
   font-size 14px
-  line-height 175%
+  line-height 150%
   margin 0 0 15px
   padding-left 39px
   font-weight 400
   color #080D13A6
   background-image url(/src/assets/images/icons/Marker.svg)
   background-position 0 0
-  background-size 24px 24px
+  background-size 21px 21px
   background-repeat no-repeat
+.li p
+  display inline
+  color #0057FF
 .number
   background rgba(0,87,255,0.15)
   color #0057ff
@@ -50,6 +53,7 @@ export default {
   font-weight 700
   font-size 14px
   line-height 175%
+  flex-shrink 0
 
 .item-number
   display flex

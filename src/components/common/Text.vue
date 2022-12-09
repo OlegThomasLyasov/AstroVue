@@ -29,11 +29,11 @@ export default {
 .text-wrap
     display flex
     flex-direction column
-    padding 0px 16px 70px 16px
-    +mediaQuery768()
-      padding 0px 50px 85px 50px
+    justify-content center 
     +mediaQuery1024()
-      padding 30px 60px 95px 60px  
+      width 436px
+    +mediaQuery1440()
+      width 100%
 .title
     margin 0 0 15px
     font-weight 700

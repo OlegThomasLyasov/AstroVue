@@ -53,6 +53,7 @@ export default {
     display flex
     align-items center
     font-size 15px
+    cursor pointer
 
 .title
     margin-left 8.3px

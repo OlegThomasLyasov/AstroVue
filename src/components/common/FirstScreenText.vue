@@ -51,7 +51,7 @@ export default {
   margin 0 0 16px
   font-weight 700
   color #080D13
-  font-size 22px
+  font-size 21px
   line-height 120%
   +mediaQuery768()
     font-size 28px

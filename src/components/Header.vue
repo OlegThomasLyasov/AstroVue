@@ -51,12 +51,14 @@ export default {
   font-size 15px
   font-weight 700
   line-height 150%
+  cursor pointer
 .title
   margin-left 8.3px
 
 .InfoTel
   display flex
   align-items center
+  cursor pointer
 
 .desc
   display none

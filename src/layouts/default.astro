@@ -16,6 +16,8 @@ import ImageText from '../components/imageText.vue';
 import DataImageText from '../assets/data/DataImageText.json';
 import Footer from '../components/Footer.vue';
 import FooterInfo from '../assets/data/Footer.json';
+import FormRegistration from '../components/FormRegistration.vue';
+import FormInfo from '../assets/data/FormRegistration.json';
 ---
 
 <html lang="en">
@@ -28,9 +30,10 @@ import FooterInfo from '../assets/data/Footer.json';
 	</head>
 	<body>
         <Menu data={MenuData}/>
-		<FirstScreen FirstInfo={FirstInfo}/>
-		<Card CardInfo={CardInfo}/>
+		<FirstScreen data={FirstInfo}/>
+		<Card data={CardInfo}/>
 		<ImageText data={DataImageText}/>
+		<FormRegistration data={FormInfo}/>
 		<Footer data={FooterInfo}/>
 		<slot/>
 	</body>

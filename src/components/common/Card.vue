@@ -1,7 +1,7 @@
 <template lang="pug">
 section
   div(:class="$style.row")
-    div(v-for="(item,index) in CardInfo.items" :class="$style.cardWrapper" :key="index")
+    div(v-for="(item,index) in data.items" :class="$style.cardWrapper" :key="index")
       div(:class="$style.CardIcon")
         IconsVue(:class="$style.Icon" :data="item.icon")
       div(:class="$style.textBox")  
@@ -14,7 +14,7 @@ import IconsVue from './Icons.vue';
 
 export default {
   props: {  
-    CardInfo: {
+    data: {
       type: Object,
       required: true
     },
@@ -43,16 +43,17 @@ section
     align-items flex-start
     position relative
     width 100%
-    margin-bottom 60px
+    &:not(:last-child)
+      margin-bottom 60px
     &:nth-child(3n+3)
         margin-right 0px
     +mediaQuery1024()
       margin 0 30px 60px 0
       width 301px
-      height 245px
+      &:nth-last-child(-n+3)
+        margin-bottom 0
     +mediaQuery1440()
       width 380px
-      height 200px
 .textBox 
   padding 50px 30px 30px 30px
 .CardIcon
