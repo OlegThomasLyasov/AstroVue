@@ -32,6 +32,8 @@ export default  {
   box-shadow: 0px 6px 10px rgba(0, 87, 255, 0.15)
   border none
   cursor pointer
+  &:hover
+    background-color #0075FF
   +mediaQuery768()
     width 172px
     height 48px

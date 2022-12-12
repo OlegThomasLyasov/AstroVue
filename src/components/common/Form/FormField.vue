@@ -2,17 +2,28 @@
 div(:class="$style.group")
     div(:class="$style.label") Номер телефона
     div(:class="$style.field")
-        input(placeholder="+7" 
-                mask="+7 (###) ###-##-##"
-                :class="$style.input")
-        Button(:text="data.button.text" :class="$style.button")
+        input(
+              placeholder="+7" 
+              mask="'####-##'" 
+              type="tel"
+              :debounce="200"
+              v-model="phone"
+              ref="input"
+              @focus="onInputFocus"
+              :class="$style.input"
+              )
+        Button(:text="data.button.text" :class="$style.button" @click="submitForm")
 </template>
 
 <script lang="ts">
-
 import Button from '../Button.vue';
 
+
 export default {
+  mounted() {
+    const labelInputRef = this.$refs.input;
+    labelInputRef.focus();
+  },
   props: {  
     data: {
       type: Object,
@@ -20,7 +31,27 @@ export default {
     },
   },
   components:{
-    Button
+    Button,
+    
+  },
+  data() {
+    return { 
+      phone: '' 
+    }
+  },
+  methods: {
+    onInputFocus() {
+      const { input } = this.$refs;
+      if (input.value.length <= 4) {
+        this.phone = '+7 (';
+        setTimeout(() => input.setSelectionRange(input.value.length, input.value.length), 0);
+      }
+    }
+  },
+  created() {
+    this.$watch('phone', (newVal: string) =>{
+      if (/8[0-9]{10}/.test(newVal)) this.phone = newVal.slice(1);
+    })
   }
 }
 </script>
@@ -51,15 +82,17 @@ export default {
 .input  
     background #F5F5F6
     border-radius 8px
-    color rgba(8, 13, 19, 0.35)
     font-weight 400
     font-size 14px
     line-height 120%
     letter-spacing -0.02em
     border none
-    cursor pointer
     height 48px
     padding 0 16px
+    &::placeholder
+      color rgba(8, 13, 19, 0.35)
+    &:focus
+      border 1px solid #F5F5F6
     +mediaQuery768()
         width 348px
     +mediaQuery1024()
