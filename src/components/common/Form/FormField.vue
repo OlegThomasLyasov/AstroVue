@@ -1,42 +1,41 @@
 <template lang="pug">
 div(:class="$style.group")
-    div(:class="$style.label") Номер телефона
-    div(:class="$style.field")
-        input(
-              v-show="!loading"
-              placeholder="+7"
-              type="tel"
-              v-model="phone"
-              ref="input"
-              name="Телефон"
-              @blur="phoneBlur"
-              @focus="onInputFocus"
-              :class="$style.input"
-              )
-        Button(:text="data.button.text" :class="$style.button" @click="submitForm")
+  div(:class="$style.label") Номер телефона
+  div(:class="$style.field")
+    input(
+      v-show="!loading"
+      placeholder="+7"
+      v-maska="'+7 (###) ###-##-##'"
+      type="tel"
+      v-model="phone"
+      ref="input"
+      name="Телефон"
+      @blur="phoneBlur"
+      @focus="onInputFocus"
+      :class="$style.input"
+      )
+    Button(:text="data.button.text" :class="$style.button" @click="submitForm")
 </template>
 
 <script lang="ts">
 import Button from '../Button.vue';
 
-
-
 export default {
-  props: {  
+  props: {
     data: {
       type: Object,
       required: true
     },
   },
-  components:{
+  components: {
     Button,
-    
+
   },
   data() {
-    return { 
+    return {
       phone: '',
       error: '',
-      loading: false 
+      loading: false
     }
   },
   methods: {
@@ -54,7 +53,7 @@ export default {
           this.$ddmSendWrongCode('form-callback');
         }
       });
-  },
+    },
     onInputFocus() {
       const { input } = this.$refs;
       if (input.value.length <= 4) {
@@ -64,7 +63,7 @@ export default {
     }
   },
   created() {
-    this.$watch('phone', (newVal: string) =>{
+    this.$watch('phone', (newVal: string) => {
       if (/8[0-9]{10}/.test(newVal)) this.phone = newVal.slice(1);
     })
   }

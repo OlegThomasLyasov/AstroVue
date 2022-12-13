@@ -26,14 +26,15 @@ function importStylus() {
 }
 // https://astro.build/config
 export default defineConfig({
-  //output: 'server',
-  integrations: [vue()],
-  vite: {
-    plugins: [
-        {
-            ...importStylus(),
-            enforce: 'pre',
-        }
-    ]
-}
+    integrations: [vue({
+        appEntrypoint: '/src/pages/_app'
+    })],
+    vite: {
+        plugins: [
+            {
+                ...importStylus(),
+                enforce: 'pre',
+            }
+        ]
+    }
 });
