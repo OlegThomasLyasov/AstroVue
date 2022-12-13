@@ -24,38 +24,17 @@ function importStylus() {
         }
     }
 }
-function directives() {
-    return {
-        name: 'vite-directives-import-plugin',
-        async transform(code, id) {
-            if (/.plugins$/g.test(id)) {
-                return {
-                    code: `
-                @import "${path.resolve(__dirname, 'src/plugins/directives.ts')}"
-                @import "${path.resolve(__dirname, 'src/plugins/mask.ts')}"
-                ${code}
-            `,
-                    map: null,
-                }
-            }
-            return null
-        }
-    }
-}
 // https://astro.build/config
 export default defineConfig({
-  //output: 'server',
-  integrations: [vue()],
-  vite: {
-    plugins: [
-        {
-            ...importStylus(),
-            enforce: 'pre',
-        },
-        {
-            ...directives(),
-            enforce: 'pre',
-        }
-    ]
-}
+    integrations: [vue({
+        appEntrypoint: '/src/pages/_app'
+    })],
+    vite: {
+        plugins: [
+            {
+                ...importStylus(),
+                enforce: 'pre',
+            }
+        ]
+    }
 });
