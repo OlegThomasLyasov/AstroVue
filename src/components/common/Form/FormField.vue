@@ -5,7 +5,6 @@ div(:class="$style.group")
         input(
               v-show="!loading"
               placeholder="+7"
-              v-maska data-maska="+7 ### ###-##-##"
               type="tel"
               v-model="phone"
               ref="input"
@@ -19,10 +18,10 @@ div(:class="$style.group")
 
 <script lang="ts">
 import Button from '../Button.vue';
-import { vMaska } from "maska"
+
+
 
 export default {
-  directives: { maska: vMaska },
   props: {  
     data: {
       type: Object,

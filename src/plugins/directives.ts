@@ -1,5 +1,4 @@
-import vue from 'vue';
-import { vMaska } from "maska"
+import vue, { reactive } from 'vue';
 
 const vue3 = vue.createApp({});
 
