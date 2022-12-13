@@ -1,6 +1,9 @@
 import vue from 'vue';
+import { vMaska } from "maska"
 
 const vue2 = vue.createApp({});
+
+vue2.directive('maska', vMaska);
 
 vue2.directive('focus', {
   created(el) {

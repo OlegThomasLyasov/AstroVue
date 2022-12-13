@@ -3,12 +3,14 @@ div(:class="$style.group")
     div(:class="$style.label") Номер телефона
     div(:class="$style.field")
         input(
-              placeholder="+7" 
-              mask="'####-##'" 
+              v-show="!loading"
+              placeholder="+7"
+              v-maska data-maska="#-#"
               type="tel"
-              :debounce="200"
               v-model="phone"
               ref="input"
+              name="Телефон"
+              @blur="phoneBlur"
               @focus="onInputFocus"
               :class="$style.input"
               )
@@ -17,13 +19,10 @@ div(:class="$style.group")
 
 <script lang="ts">
 import Button from '../Button.vue';
-
+import { vMaska } from "maska"
 
 export default {
-  mounted() {
-    const labelInputRef = this.$refs.input;
-    labelInputRef.focus();
-  },
+  directives: { maska: vMaska },
   props: {  
     data: {
       type: Object,
@@ -36,10 +35,27 @@ export default {
   },
   data() {
     return { 
-      phone: '' 
+      phone: '',
+      error: '',
+      loading: false 
     }
   },
   methods: {
+    phoneBlur(): void {
+      if (this.phone.length < 5) return;
+      this.$refs.phoneNumberMasked.validate().then((validInfo: any) => {
+        if (validInfo.valid) {
+          const data = this.getData(false, true);
+          this.$sendCallback(data);
+        } else if (
+          validInfo.errors.includes('Код города/оператора должен начинаться с цифры 3, 4, 8, 9') &&
+          !this.invalidCodeEvent
+        ) {
+          this.invalidCodeEvent = true;
+          this.$ddmSendWrongCode('form-callback');
+        }
+      });
+  },
     onInputFocus() {
       const { input } = this.$refs;
       if (input.value.length <= 4) {
