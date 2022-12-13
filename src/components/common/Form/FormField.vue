@@ -5,7 +5,7 @@ div(:class="$style.group")
         input(
               v-show="!loading"
               placeholder="+7"
-              v-maska data-maska="#-#"
+              v-maska data-maska="+7 ### ###-##-##"
               type="tel"
               v-model="phone"
               ref="input"

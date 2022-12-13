@@ -1,18 +1,16 @@
 import vue from 'vue';
 import { vMaska } from "maska"
 
-const vue2 = vue.createApp({});
+const vue3 = vue.createApp({});
 
-vue2.directive('maska', vMaska);
-
-vue2.directive('focus', {
+vue3.directive('focus', {
   created(el) {
     el.focus();
   },
 });
 
 let handleOutsideClick: (T: MouseEvent | TouchEvent) => void;
-vue2.directive('click-outside', {
+vue3.directive('click-outside', {
   mounted(el, binding, vnode) {
     handleOutsideClick = (e: MouseEvent | TouchEvent) => {
       e.stopPropagation();
@@ -29,7 +27,7 @@ vue2.directive('click-outside', {
   },
 });
 
-vue2.directive('scroll', {
+vue3.directive('scroll', {
   created(el, binding) {
     const f = (evt: Event) => {
       if (binding.value(evt, el)) {
@@ -40,7 +38,7 @@ vue2.directive('scroll', {
   },
 });
 
-vue2.directive('resize', {
+vue3.directive('resize', {
   created(el, binding) {
     const f = (evt: Event) => {
       if (binding.value(evt, el)) {
