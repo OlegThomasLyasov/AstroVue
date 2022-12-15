@@ -2,11 +2,13 @@
 header(:class="$style.header")
   div(:class="$style.container")
     div(:class="$style.mainTitle")
-      IconsVue(:data="data.logo")
-      div(:class="$style.title" v-html="data.title")
+      a(href="https://modulbank.ru/")
+        IconsVue(:data="data.logo")
+        div(:class="$style.title" v-html="data.title")
     div(:class="$style.InfoTel")
-      IconsVue(:data="data.telIcon")
-      div(:class="$style.desc"  v-html="data.tel")
+      a(href="tel:+8 961 204 12 59")
+        IconsVue(:data="data.telIcon")
+        div(:class="$style.desc"  v-html="data.tel")
 </template>
 
 <script lang="ts">
@@ -55,6 +57,9 @@ export default {
 .title
   margin-left 8.3px
 
+a 
+  display contents
+  color #FFFFFF
 .InfoTel
   display flex
   align-items center

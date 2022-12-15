@@ -1,25 +1,22 @@
 import type { App } from 'vue';
 import { maska } from 'maska';
-import { ValidationProvider, ValidationObserver, extend, localize } from 'vee-validate';
-import { required, email } from 'vee-validate/dist/rules';
-import { phoneNumberMaskedValidator, nameValidator } from '../plugins/vee-validate/rules';
+import { defineRule, configure, Form, Field, ErrorMessage } from 'vee-validate';
+import { required } from '@vee-validate/rules';
+import { localize } from '@vee-validate/i18n';
 import { ru } from '../plugins/vee-validate/locale';
 
-/* Connect Vee-Validate globally */
-
-/* Define default validation rules */
-extend('required', required);
-extend('email', email);
-
 /* Define custom validation rules */
-extend('phoneNumberMasked', phoneNumberMaskedValidator);
-extend('name', nameValidator);
+defineRule('required',required);
 
 /* Define localization dictionary */
-localize('ru', ru);
+configure ({
+    generateMessage: localize('ru', ru)
+});
 
 export default (app: App) => {
     app.directive('maska', maska);
-    app.component('ValidationProvider', ValidationProvider);
-    app.component('ValidationObserver', ValidationObserver);
+    /* Connect Vee-Validate globally */
+    app.component('Form', Form);
+    app.component('Field', Field);
+    app.component('ErrorMessage', ErrorMessage);
 }

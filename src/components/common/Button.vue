@@ -1,11 +1,13 @@
 <template lang="pug">
 button(
   :class="$style.button"
+  @click="scrollTo(to)"
 ) {{text}}
   
 </template>
 
 <script lang="ts">
+import scrollTo from '../mixins/scrollTo.js';
 
 export default  {
   props: {  
@@ -13,6 +15,7 @@ export default  {
       required: true
     },
   },
+  mixins: [scrollTo],
 }
 </script>
 

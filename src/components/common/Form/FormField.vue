@@ -1,24 +1,11 @@
 <template lang="pug">
-ValidationProvider(
-  :name="name"
-  :rules="rules"
-  :debounce="debounce"
-  :mode="mode"
-)
 div(:class="$style.group")
   div(:class="$style.label") Номер телефона
-  ValidationProvider(
-            v-show="!loading"
-            ref="phoneNumberMasked"
-            name="phoneNumberMasked"
-            rules="required|phoneNumberMasked"
-            mode="lazy"
-            tag="div"
-            :debounce="200"
-          )
-    div(slot-scope='{ errors }' :class="wrapClass(errors[0])")
-      div(:class="$style.field")
-        input(
+  Form(
+      @submit="submitForm"
+        )
+    div(:class="$style.field")
+      Field(
           v-show="!loading"
           placeholder="+7"
           v-maska="'+7 (###) ###-##-##'"
@@ -26,17 +13,17 @@ div(:class="$style.group")
           v-model="phone"
           ref="input"
           name="phoneNumberMasked"
-          @blur="phoneBlur"
           @focus="onInputFocus"
-          :class="[$style.input, errors[0] && $style['input-error']]"
+          :class="[$style.input, errors[1] && $style['input-error']]"
+          :rules="validatePhone"
           )
-        Button(:text="data.button.text" :class="$style.button" @click="submitForm")
-      div(v-if="errors[0]" :class="{[$style.visible]: errors[0], [$style.info]: true, [$style.error]: true }" v-html="errors[0]")
+      Button(:text="data.button.text" :class="$style.button")
+    ErrorMessage(name="phoneNumberMasked" :class="$style.error")
 </template>
 
 <script lang="ts">
 import Button from '../Button.vue';
-import { ValidationObserver } from 'vee-validate';
+import { cityCodes8xxAllowed, cityCodesFirstNumberAllowed } from '../../../plugins/vee-validate/data';
 
 export default {
   props: {
@@ -47,7 +34,6 @@ export default {
   },
   components: {
     Button,
-    ValidationObserver
   },
   data() {
     return {
@@ -57,23 +43,77 @@ export default {
     }
   },
   methods: {
-    phoneBlur(): void {
-      if (this.phone.length < 5) return;
-      
+    submitForm() {
+      this.loading = true;
+        const params = this.$takeParamsForSend('callback', { phone: this.phone }, this.productId);
+        this.$sendApi(params)
+          .then(() => {
+            this.$emit('formSendSuccess');
+            const ddm = {
+              name: 'Telephone Sent In Long Callback Form',
+              category: 'user lead',
+              action: 'long callback form: name-mail-tel submit',
+              element: this.$refs.submit.$el.classList,
+              productId: 7,
+            };
+            this.$ddmEvent(ddm);
+          })
+          .catch((err: Error) => {
+            console.error(err);
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      console.log(this.phone); 
     },
+
+    validatePhone(value: string) {
+      // проверка на пустое поле
+      if (!value) {
+        this.errors.push('Телефон обязателен для заполнения');
+        return 'Телефон обязателен для заполнения';
+      }
+      // проверка на регулярное выражение
+      const regex = new RegExp('^\\+\\d{1,2}\\s+?\\(\\d{3,5}\\)\\s+?\\d{1,3}-\\d{2}-\\d{2}$'); // выражение
+      if (!regex.test(value)) {
+        this.errors.push('Телефон обязателен для заполнения');
+        return 'Телефон заполнен не верно';
+      }
+      const phoneNumberCleaned: string = value.replace(/[ \-()_]/g, '');
+      const cityCode: number = +phoneNumberCleaned.slice(2, 5);
+      const cityCodeFirstNumber: number = +phoneNumberCleaned[2];
+      const isCityCodeFirstNumberValid: boolean = cityCodesFirstNumberAllowed.includes(cityCodeFirstNumber);
+      const isCityCode8xxIsValid: boolean = cityCodes8xxAllowed.includes(cityCode);
+      if (!isCityCodeFirstNumberValid) {
+        this.errors.push('Код города/оператора должен начинаться с цифры 3, 4, 8, 9');
+        return 'Код города/оператора должен начинаться с цифры 3, 4, 8, 9'; 
+      }
+      // Logic: https://jira.modulbank.ru/browse/SM-3219
+      if (cityCodeFirstNumber === 8 && !isCityCode8xxIsValid) {
+        this.errors.push('Код города/оператора заполнен не верно');
+        return 'Код города/оператора заполнен не верно';
+      }
+      this.errors=[];//очищаем ошибки
+      // All is good
+      return true;
+    },
+
     onInputFocus() {
       const { input } = this.$refs;
-      if (input.value.length <= 4) {
+      if (input.length <= 4) {
         this.phone = '+7 (';
-        setTimeout(() => input.setSelectionRange(input.value.length, input.value.length), 0);
+        setTimeout(() => input.setSelectionRange(input.length, input.length), 0);
       }
     }
+
   },
+
   created() {
     this.$watch('phone', (newVal: string) => {
       if (/8[0-9]{10}/.test(newVal)) this.phone = newVal.slice(1);
     })
   }
+
 }
 </script>
 
@@ -122,22 +162,17 @@ export default {
         padding 0 26px
 .input-error
     border-color #F24F4F
-    background #FFE3E3
 .button
     margin-top 25px
     +mediaQuery768()
         margin-top 0
         margin-left 20px
-.info
+.error
+  color #CF4545
+  text-align left
   margin-top 10px
   display block
   font-size 12px
   line-height 15px
   transition opacity 0.2s ease-in-out
-  opacity 0
-.error
-  color #CF4545
-  text-align left
-.visible
-  opacity 1
 </style>

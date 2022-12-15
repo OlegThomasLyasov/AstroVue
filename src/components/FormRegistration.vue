@@ -27,15 +27,12 @@ export default {
   border-radius: 10px
   display flex
   justify-content space-between
-  height 367px
   margin 0 16px 70px
   flex-direction column 
   +mediaQuery768()
     margin 0 30px 85px
-    height 360px
   +mediaQuery1024()
     margin 0 113px 95px
-    height 427px
   +mediaQuery1440()
     margin 0 325px 135px
 </style>
