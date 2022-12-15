@@ -1,4 +1,4 @@
-import vue, { reactive } from 'vue';
+import vue from 'vue';
 
 const vue3 = vue.createApp({});
 

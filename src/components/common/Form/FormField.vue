@@ -1,24 +1,42 @@
 <template lang="pug">
+ValidationProvider(
+  :name="name"
+  :rules="rules"
+  :debounce="debounce"
+  :mode="mode"
+)
 div(:class="$style.group")
   div(:class="$style.label") Номер телефона
-  div(:class="$style.field")
-    input(
-      v-show="!loading"
-      placeholder="+7"
-      v-maska="'+7 (###) ###-##-##'"
-      type="tel"
-      v-model="phone"
-      ref="input"
-      name="Телефон"
-      @blur="phoneBlur"
-      @focus="onInputFocus"
-      :class="$style.input"
-      )
-    Button(:text="data.button.text" :class="$style.button" @click="submitForm")
+  ValidationProvider(
+            v-show="!loading"
+            ref="phoneNumberMasked"
+            name="phoneNumberMasked"
+            rules="required|phoneNumberMasked"
+            mode="lazy"
+            tag="div"
+            :debounce="200"
+          )
+    div(slot-scope='{ errors }' :class="wrapClass(errors[0])")
+      div(:class="$style.field")
+        input(
+          v-show="!loading"
+          placeholder="+7"
+          v-maska="'+7 (###) ###-##-##'"
+          type="tel"
+          v-model="phone"
+          ref="input"
+          name="phoneNumberMasked"
+          @blur="phoneBlur"
+          @focus="onInputFocus"
+          :class="[$style.input, errors[0] && $style['input-error']]"
+          )
+        Button(:text="data.button.text" :class="$style.button" @click="submitForm")
+      div(v-if="errors[0]" :class="{[$style.visible]: errors[0], [$style.info]: true, [$style.error]: true }" v-html="errors[0]")
 </template>
 
 <script lang="ts">
 import Button from '../Button.vue';
+import { ValidationObserver } from 'vee-validate';
 
 export default {
   props: {
@@ -29,30 +47,19 @@ export default {
   },
   components: {
     Button,
-
+    ValidationObserver
   },
   data() {
     return {
       phone: '',
-      error: '',
+      errors: [],
       loading: false
     }
   },
   methods: {
     phoneBlur(): void {
       if (this.phone.length < 5) return;
-      this.$refs.phoneNumberMasked.validate().then((validInfo: any) => {
-        if (validInfo.valid) {
-          const data = this.getData(false, true);
-          this.$sendCallback(data);
-        } else if (
-          validInfo.errors.includes('Код города/оператора должен начинаться с цифры 3, 4, 8, 9') &&
-          !this.invalidCodeEvent
-        ) {
-          this.invalidCodeEvent = true;
-          this.$ddmSendWrongCode('form-callback');
-        }
-      });
+      
     },
     onInputFocus() {
       const { input } = this.$refs;
@@ -99,8 +106,8 @@ export default {
     font-weight 400
     font-size 14px
     line-height 120%
+    border 1px solid #f5f5f6
     letter-spacing -0.02em
-    border none
     height 48px
     padding 0 16px
     &::placeholder
@@ -113,9 +120,24 @@ export default {
         font-size 16px
         height 60px
         padding 0 26px
+.input-error
+    border-color #F24F4F
+    background #FFE3E3
 .button
     margin-top 25px
     +mediaQuery768()
         margin-top 0
         margin-left 20px
+.info
+  margin-top 10px
+  display block
+  font-size 12px
+  line-height 15px
+  transition opacity 0.2s ease-in-out
+  opacity 0
+.error
+  color #CF4545
+  text-align left
+.visible
+  opacity 1
 </style>
