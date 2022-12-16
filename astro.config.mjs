@@ -15,7 +15,6 @@ function importStylus() {
                 @import "${path.resolve(__dirname, 'src/styles/variables.styl')}"
                 @import "${path.resolve(__dirname, 'src/styles/mixins.styl')}"
                 @import "${path.resolve(__dirname, 'src/styles/fonts.styl')}"
-                @import "${path.resolve(__dirname, 'src/styles/root.styl')}"
                 ${code}
             `,
                     map: null,

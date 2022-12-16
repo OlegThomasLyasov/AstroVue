@@ -4,7 +4,6 @@ const scrollTo = {
       if (to === '#header') document.querySelector('#__nuxt').scrollIntoView({ behavior: 'smooth' });
       let el = document.querySelector(to);
       if (el) {
-        console.log(321331);
         const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior });
         if (to.includes('#form')) {

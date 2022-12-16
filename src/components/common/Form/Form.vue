@@ -1,8 +1,9 @@
 <template lang="pug">
-div(:class="$style.form")
+div(v-if="!isFormSuccess" :class="$style.form")
     FormHeader(:data="data")
-    FormField(:data="data")
+    FormField(:data="data" @formSendSuccess="formSendSuccess")
     FormDescription
+FormSuccess(v-else)
 </template>
 
 <script lang="ts">
@@ -10,8 +11,14 @@ div(:class="$style.form")
 import FormHeader from './FormHeader.vue';
 import FormField from './FormField.vue';
 import FormDescription from './FormDescription.vue';
+import FormSuccess from './FormSuccess.vue';
 
 export default {
+  data() {
+    return {
+      isFormSuccess: false
+    }
+  },
   props: {  
     data: {
       type: Object,
@@ -21,7 +28,13 @@ export default {
   components:{
     FormHeader,
     FormField,
-    FormDescription
+    FormDescription,
+    FormSuccess
+  },
+  methods: {
+    formSendSuccess() {
+      this.isFormSuccess = true;
+    }
   }
 }
 </script>

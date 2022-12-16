@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /fs/
+Disallow: /docs/
+Disallow: *pdf
+
+Host: https://friends.modulbank.ru
+Sitemap: https://friends.modulbank.ru/sitemap.xml

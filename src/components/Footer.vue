@@ -6,12 +6,14 @@ footer(:class="$style.footer")
                 IconsVue(:data="data.logo")
                 div(:class="$style.title" v-html="data.title")
         div(:class="$style.icons")
-            div(v-for="(item, index) in data.icons" :key="index" :class="$style.icon")
-                IconsVue(:data="item")
+            div(v-for="item in data.icons" :key="index" :class="$style.icon")
+                a(:href='item.link')
+                    IconsVue(:data="item.name")
 </template>
 
 <script lang="ts">
 import IconsVue from './common/Icons.vue';
+
 export default {
     props: {  
         data: {

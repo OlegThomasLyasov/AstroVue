@@ -5,7 +5,7 @@ interface Props {
 
 const {title = 'friends.modulbank'} = Astro.props as Props
 
-// компоненты (по готовности переделать в 1 json)
+// компоненты (по готовности переделать в 1 json?)
 import Menu from '../components/Header.vue';
 import MenuData from '../assets/data/Header.json';
 import FirstScreen from '../components/FirstScreen.vue';
@@ -23,14 +23,17 @@ import FormInfo from '../assets/data/FormRegistration.json';
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/152x152.png" />
+		<link rel="icon" type="image/png" href="/270x270.png" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="robots" content="/robots.txt">
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
         <Menu data={MenuData}/>
-		<FirstScreen data={FirstInfo}/>
+		<FirstScreen data={FirstInfo} client:visible/>
 		<Card data={CardInfo}/>
 		<ImageText data={DataImageText}/>
 		<FormRegistration data={FormInfo} client:visible/>
@@ -46,7 +49,7 @@ body {
 	height: 100%
     display: flex
     flex-direction: column
-    font-size: 1.6rem
+    font-size: 16px
     font-weight: 400
 	font-family: 'Montserrat'
 	font-style: normal

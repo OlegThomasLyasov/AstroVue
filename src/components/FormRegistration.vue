@@ -1,6 +1,7 @@
 <template lang="pug">
-div(:class="$style['form-wrapper']")
-  Form(:data="data")
+div#form
+  div(:class="$style['form-wrapper']")
+    Form(:data="data")
 </template>
 
 <script lang="ts">
@@ -14,7 +15,7 @@ export default {
       required: true
     },
   },
-  components:{
+  components: {
     Form
   }
 }

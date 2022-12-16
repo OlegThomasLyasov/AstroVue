@@ -2,10 +2,25 @@
     "title": "Модульбанк",
     "logo":"logo",
     "icons":[
-        "vk",
-        "ok",
-        "tw",
-        "you",
-        "tg"
+        {
+            "name":  "vk",
+            "link": "https://vk.com/modulbank" 
+        },
+        {
+            "name":  "ok",
+            "link": "https://ok.ru/modulbank" 
+        },
+        {
+            "name":  "tw",
+            "link": "https://twitter.com/modulbank" 
+        },
+        {
+            "name":  "you",
+            "link": "https://www.youtube.com/channel/UCT-V4NXofjhXBjC-AZu-HAQ" 
+        },
+        {
+            "name":  "tg",
+            "link": "https://vk.com/modulbank" 
+        }
     ]
 }

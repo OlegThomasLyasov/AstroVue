@@ -14,6 +14,9 @@ export default  {
     text: {
       required: true
     },
+    to: {
+      required: false
+    }
   },
   mixins: [scrollTo],
 }

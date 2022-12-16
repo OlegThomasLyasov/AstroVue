@@ -14,16 +14,18 @@ div(:class="$style.group")
           ref="input"
           name="phoneNumberMasked"
           @focus="onInputFocus"
-          :class="[$style.input, errors[1] && $style['input-error']]"
           :rules="validatePhone"
+          :class="[$style.input, errors[1] && $style['input-error']]"
           )
       Button(:text="data.button.text" :class="$style.button")
     ErrorMessage(name="phoneNumberMasked" :class="$style.error")
+  FieldCircleLoader(v-show="loading" :class="[$style.loader, $style.input]" color="blue")
 </template>
 
 <script lang="ts">
 import Button from '../Button.vue';
-import { cityCodes8xxAllowed, cityCodesFirstNumberAllowed } from '../../../plugins/vee-validate/data';
+import { cityCodes8xxAllowed, cityCodesFirstNumberAllowed } from './data';
+import FieldCircleLoader from './FieldCircleLoader-v2.vue';
 
 export default {
   props: {
@@ -34,6 +36,7 @@ export default {
   },
   components: {
     Button,
+    FieldCircleLoader
   },
   data() {
     return {
@@ -45,25 +48,7 @@ export default {
   methods: {
     submitForm() {
       this.loading = true;
-        const params = this.$takeParamsForSend('callback', { phone: this.phone }, this.productId);
-        this.$sendApi(params)
-          .then(() => {
-            this.$emit('formSendSuccess');
-            const ddm = {
-              name: 'Telephone Sent In Long Callback Form',
-              category: 'user lead',
-              action: 'long callback form: name-mail-tel submit',
-              element: this.$refs.submit.$el.classList,
-              productId: 7,
-            };
-            this.$ddmEvent(ddm);
-          })
-          .catch((err: Error) => {
-            console.error(err);
-          })
-          .finally(() => {
-            this.loading = false;
-          });
+      this.$emit('formSendSuccess');  
       console.log(this.phone); 
     },
 
@@ -93,19 +78,16 @@ export default {
         this.errors.push('Код города/оператора заполнен не верно');
         return 'Код города/оператора заполнен не верно';
       }
-      this.errors=[];//очищаем ошибки
+      //очищаем ошибки
+      this.errors=[];
       // All is good
       return true;
     },
 
     onInputFocus() {
       const { input } = this.$refs;
-      if (input.length <= 4) {
-        this.phone = '+7 (';
-        setTimeout(() => input.setSelectionRange(input.length, input.length), 0);
-      }
+      //допилить
     }
-
   },
 
   created() {
@@ -140,6 +122,9 @@ export default {
     flex-direction column
     +mediaQuery768()
         flex-direction row
+.loader
+  display flex
+  align-items center
 .input  
     background #F5F5F6
     border-radius 8px

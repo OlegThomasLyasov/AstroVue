@@ -10,6 +10,7 @@ div(:class="$style['text-wrap']")
      v-if="data.button"
     :text="data.button.text"
     :class="$style.button"
+    :to="data.button.to"
   )
 </template>
 
