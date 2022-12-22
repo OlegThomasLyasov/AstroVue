@@ -6,7 +6,7 @@ header(:class="$style.header")
         IconsVue(:data="data.logo")
         div(:class="$style.title" v-html="data.title")
     div(:class="$style.InfoTel")
-      a(href="tel:+8 961 204 12 59")
+      a(href="tel:+7 800 600 33 77")
         IconsVue(:data="data.telIcon")
         div(:class="$style.desc"  v-html="data.tel")
 </template>

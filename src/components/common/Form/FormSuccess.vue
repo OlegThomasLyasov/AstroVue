@@ -36,30 +36,30 @@ export default {
   margin-bottom 1rem
 
 .title
-  font-size 2.2rem
-  line-height 2.64rem
-  margin-bottom 2rem
+  font-size 22px
+  line-height 26.4px
+  margin-bottom 20px
   font-weight 700
   letter-spacing -0.02em
   text-align center
   +mediaQuery768()
-    font-size 2.4rem
-    line-height 2.9rem
+    font-size 24px
+    line-height 29px
 
 .description
   text-align center
   color rgba(#080D13, 0.65)
-  font-size 1.4rem
+  font-size 14px
   font-weight 400
-  line-height 2.1rem
+  line-height 21px
   letter-spacing -0.02em
   +mediaQuery768()
-    font-size 1.8rem
-    line-height 2.7rem
+    font-size 18px
+    line-height 27px
 .notification
   position absolute
-  bottom 1rem
-  width calc(100% - 2rem)
+  bottom 10rem
+  width calc(100% - 20rem)
   +mediaQuery768()
-    bottom 1.5rem
+    bottom 15px
 </style>

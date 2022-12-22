@@ -7,7 +7,6 @@ FormSuccess(v-else)
 </template>
 
 <script lang="ts">
-
 import FormHeader from './FormHeader.vue';
 import FormField from './FormField.vue';
 import FormDescription from './FormDescription.vue';
