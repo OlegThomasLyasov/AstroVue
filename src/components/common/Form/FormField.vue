@@ -28,8 +28,6 @@ import { cityCodes8xxAllowed, cityCodesFirstNumberAllowed } from './data';
 import FieldCircleLoader from './FieldCircleLoader-v2.vue';
 import SendApi from '@modulbank/sendapi';
 
-import { inject } from 'vue';
-
 const apiUrls = {
   url: '/crmlandingapi/productRequests',
   botUrl: 'https://bot1.modulbank.ru/bg',
@@ -38,13 +36,8 @@ const apiUrls = {
   mdConfirmOwnUrl: '/api/confirmOwning',
   mdSetOgrnUrl: '/api/setOgrn',
 };
-const api = SendApi(apiUrls);
 
 export default {
-  setup() {
-    inject('sendApi', api.sendCallback);
-    inject('takeParamsForSend', api.preparedData);
-  },
   props: {
     data: {
       type: Object,
@@ -59,14 +52,32 @@ export default {
     return {
       phone: '',
       errors: [],
+      productId: 7,
       loading: false
     }
   },
   methods: {
     submitForm() {
+      const api = SendApi(apiUrls);
       this.loading = true;
-      this.$emit('formSendSuccess'); 
-    },
+      api.sendCallback( { phoneNumber: this.phone, productId: this.productId}).then(() => {
+            this.$emit('formSendSuccess'); 
+            const ddm = {
+              name: 'Telephone Sent In Long Callback Form',
+              category: 'user lead',
+              action: 'long callback form: name-mail-tel submit',
+              element: this.$refs.submit.$el.classList,
+              productId: 7,
+            };
+            console.log(ddm); 
+          })
+          .catch((err: Error) => {
+            console.error(err);
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+        },
 
     validatePhone(value: string) {
       // проверка на пустое поле

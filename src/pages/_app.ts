@@ -22,5 +22,5 @@ export default (app: App) => {
     app.component('Form', Form);
     app.component('Field', Field);
     app.component('ErrorMessage', ErrorMessage);
-    app.use(SendApiPlugin);
+    //app.use(SendApiPlugin);
 }
