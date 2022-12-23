@@ -3,7 +3,7 @@ div(:class="$style.group")
   div(:class="$style.label") Номер телефона
   Form(
       @submit="submitForm"
-        )
+      )
     div(:class="$style.field")
       Field(
           v-show="!loading"
@@ -11,13 +11,14 @@ div(:class="$style.group")
           v-maska="'+7 (###) ###-##-##'"
           type="tel"
           v-model="phone"
-          ref="input"
           name="phoneNumberMasked"
+          ref="form"
           @focus="onInputFocus"
+          @blur="phoneBlur"
           :rules="validatePhone"
           :class="[$style.input, errors[1] && $style['input-error']]"
-          )
-      Button(:text="data.button.text" :class="$style.button")
+        )  
+      Button(:text="data.button.text" :class="$style.button" ref="submit")
     ErrorMessage(name="phoneNumberMasked" :class="$style.error")
   FieldCircleLoader(v-show="loading" :class="[$style.loader, $style.input]" color="blue")
 </template>
@@ -27,6 +28,7 @@ import Button from '../Button.vue';
 import { cityCodes8xxAllowed, cityCodesFirstNumberAllowed } from './data';
 import FieldCircleLoader from './FieldCircleLoader-v2.vue';
 import SendApi from '@modulbank/sendapi';
+import ddmEvent from '@modulbank/components-header/src/components/utils/plugins/ddmEvent';
 
 const apiUrls = {
   url: '/crmlandingapi/productRequests',
@@ -59,8 +61,10 @@ export default {
   methods: {
     submitForm() {
       const api = SendApi(apiUrls);
-      this.loading = true;
-      api.sendCallback( { phoneNumber: this.phone, productId: this.productId}).then(() => {
+      this.loading = true; 
+      /* const params = api.preparedData('callback', { phone: this.phone }, this.productId);
+      console.log(params); */
+      api.sendCallback({applicationType:'callback', phoneNumber: this.phone, productId: this.productId }).then(() => {
             this.$emit('formSendSuccess'); 
             const ddm = {
               name: 'Telephone Sent In Long Callback Form',
@@ -69,15 +73,16 @@ export default {
               element: this.$refs.submit.$el.classList,
               productId: 7,
             };
-            console.log(ddm); 
+            //отправка ddm, надеюсь работает
+            ddmEvent(ddm);            
           })
           .catch((err: Error) => {
             console.error(err);
           })
           .finally(() => {
             this.loading = false;
-          });
-        },
+          }); 
+      },
 
     validatePhone(value: string) {
       // проверка на пустое поле
@@ -112,8 +117,12 @@ export default {
     },
 
     onInputFocus() {
-      const { input } = this.$refs;
-      //допилить
+      if ( this.phone.length <= 4 )
+        this.phone = '+7 ';
+    },
+    phoneBlur () {
+      if (this.phone.length < 5) return;
+      this.$refs.form.validate();
     }
   },
 
