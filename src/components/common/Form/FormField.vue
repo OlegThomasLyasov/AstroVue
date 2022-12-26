@@ -54,25 +54,63 @@ export default {
     return {
       phone: '',
       errors: [],
-      productId: 7,
+      productId: "RKO",
       loading: false
     }
   },
   methods: {
+    testPhone(phone: string): string | false {
+      const regex = new RegExp('^\\+\\d{1,2}\\s+?\\(\\d{3,5}\\)\\s+?\\d{1,3}-\\d{2}-\\d{2}$'); // выражение
+      return regex.test(phone) ? phone.replace(/[ \-()_]/g, '') : false;
+    },
+
+    preparedData(type: string, data: any, productId: string = 'RKO'): string | object | boolean {
+    const phoneNumber = this.testPhone(data.phone);
+    if (!phoneNumber) return false;
+    const res: any = {
+      firstName: data.name,
+      phoneNumber,
+      comment: data.comment,
+    };
+
+    res.dataSource = 'website';
+    res.isComplete = false;
+    res.productId = productId;
+    res.isPhoneConfirmRequired = data.isPhoneConfirmRequired;
+    if (data.websitePlacement) res.websitePlacement = data.websitePlacement;
+    if (data.ogrn) res.ogrn = data.ogrn;
+
+    switch (type) {
+      case 'registry':
+        res.applicationType = 'Registration';
+        res.setCaptchaCode = data.setCaptchaCode;
+        res.smsCode = false;
+        res.repeatSmsCode = false;
+        if (data.portalRequestId) res.portalRequestId = data.portalRequestId;
+        break;
+      default:
+        res.applicationType = data.applicationType;
+        break;
+    }
+      return res;
+    },
     submitForm() {
       const api = SendApi(apiUrls);
       this.loading = true; 
       /* const params = api.preparedData('callback', { phone: this.phone }, this.productId);
       console.log(params); */
-      api.sendCallback({applicationType:'callback', phoneNumber: this.phone, productId: this.productId }).then(() => {
+      //обработать номер
+      const params = this.preparedData('callback', { phone: this.phone }, this.productId);
+      console.log(params);
+      api.sendCallback(params).then(() => {
             this.$emit('formSendSuccess'); 
             const ddm = {
               name: 'Telephone Sent In Long Callback Form',
               category: 'user lead',
               action: 'long callback form: name-mail-tel submit',
               element: this.$refs.submit.$el.classList,
-              productId: 7,
-            };
+              productId: "RKO",
+            };            
             //отправка ddm, надеюсь работает
             ddmEvent(ddm);            
           })

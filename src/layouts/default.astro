@@ -6,18 +6,20 @@ interface Props {
 const {title = 'friends.modulbank'} = Astro.props as Props
 
 // компоненты (по готовности переделать в 1 json?)
-import Menu from '../components/Header.vue';
-import MenuData from '../assets/data/Header.json';
+import Header from '../components/Header.vue';
+import HeaderInfo from '../assets/data/Header.json';
 import FirstScreen from '../components/FirstScreen.vue';
 import FirstInfo from '../assets/data/FirstSection.json';
 import Card from '../components/common/Card.vue';
 import CardInfo from '../assets/data/Card.json';
 import ImageText from '../components/imageText.vue';
-import DataImageText from '../assets/data/DataImageText.json';
+import ImageTextInfo from '../assets/data/DataImageText.json';
 import Footer from '../components/Footer.vue';
 import FooterInfo from '../assets/data/Footer.json';
 import FormRegistration from '../components/FormRegistration.vue';
 import FormInfo from '../assets/data/FormRegistration.json';
+
+import All from '../assets/data/All.json';
 ---
 
 <html lang="en">
@@ -32,13 +34,12 @@ import FormInfo from '../assets/data/FormRegistration.json';
 		<title>{title}</title>
 	</head>
 	<body>
-        <Menu data={MenuData}/>
+        <Header data={HeaderInfo}/>
 		<FirstScreen data={FirstInfo} client:visible/>
 		<Card data={CardInfo}/>
-		<ImageText data={DataImageText}/>
+		<ImageText data={ImageTextInfo}/>
 		<FormRegistration data={FormInfo} client:visible/>
 		<Footer data={FooterInfo}/>
-		<slot/>
 	</body>
 </html>
 

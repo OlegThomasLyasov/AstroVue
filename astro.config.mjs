@@ -36,5 +36,8 @@ export default defineConfig({
                 enforce: 'pre',
             }
         ]
+    },
+    server: {
+        port: 3000
     }
 });

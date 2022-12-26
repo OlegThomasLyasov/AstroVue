@@ -1,7 +1,7 @@
 const scrollTo = {
   methods: {
     scrollTo(to, yOffset = -90, behavior = 'smooth') {
-      if (to === '#header') document.querySelector('#__nuxt').scrollIntoView({ behavior: 'smooth' });
+      //if (to === '#header') document.querySelector('#__nuxt').scrollIntoView({ behavior: 'smooth' });
       let el = document.querySelector(to);
       if (el) {
         const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
