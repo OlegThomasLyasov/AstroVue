@@ -18,7 +18,7 @@ div(:class="$style.group")
           :rules="validatePhone"
           :class="[$style.input, errors[1] && $style['input-error']]"
         )  
-      Button(:text="data.button.text" :class="$style.button" ref="submit")
+      Button(v-show="!loading" :text="data.button.text" :class="[$style.button]" ref="submit")
     ErrorMessage(name="phoneNumberMasked" :class="$style.error")
   FieldCircleLoader(v-show="loading" :class="[$style.loader, $style.input]" color="blue")
 </template>
@@ -65,13 +65,13 @@ export default {
     },
 
     preparedData(type: string, data: any, productId: string = 'RKO'): string | object | boolean {
-    const phoneNumber = this.testPhone(data.phone);
-    if (!phoneNumber) return false;
-    const res: any = {
-      firstName: data.name,
-      phoneNumber,
-      comment: data.comment,
-    };
+      const phoneNumber = this.testPhone(data.phone);
+      if (!phoneNumber) return false;
+      const res: any = {
+        firstName: data.name,
+        phoneNumber,
+        comment: data.comment,
+      };
 
     res.dataSource = 'website';
     res.isComplete = false;
@@ -97,12 +97,17 @@ export default {
     submitForm() {
       const api = SendApi(apiUrls);
       this.loading = true; 
-      /* const params = api.preparedData('callback', { phone: this.phone }, this.productId);
-      console.log(params); */
       //обработать номер
-      const params = this.preparedData('callback', { phone: this.phone }, this.productId);
-      console.log(params);
-      api.sendCallback(params).then(() => {
+      //const params = api.preparedData('callback', { phone: this.phone }, this.productId);
+      const par2 = {
+          "phoneNumber": "+79999999999",
+          "pdbpromocode": "70s9mu2z76xxvr60hm",
+          "dataSource": "website",
+          "isComplete": true,
+          "productId": "REGI",
+          "applicationType": "callback_request",
+      }
+      api.sendCallback(par2).then(() => {
             this.$emit('formSendSuccess'); 
             const ddm = {
               name: 'Telephone Sent In Long Callback Form',

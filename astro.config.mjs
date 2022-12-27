@@ -35,7 +35,12 @@ export default defineConfig({
                 ...importStylus(),
                 enforce: 'pre',
             }
-        ]
+        ],
+        server: {
+            proxy: {
+                '/crmlandingapi': process.env.PROXY_API_CRM || 'https://devrko.moduldev.ru/',
+            }
+        }
     },
     server: {
         port: 3000
