@@ -38,6 +38,14 @@ const apiUrls = {
   mdConfirmOwnUrl: '/api/confirmOwning',
   mdSetOgrnUrl: '/api/setOgrn',
 };
+const api = SendApi(apiUrls);
+
+interface IContext {
+  phone: string;
+  isComplete: boolean;
+  applicationType: string;
+  websitePlacement?: object;
+};
 
 export default {
   props: {
@@ -59,65 +67,33 @@ export default {
     }
   },
   methods: {
-    testPhone(phone: string): string | false {
-      const regex = new RegExp('^\\+\\d{1,2}\\s+?\\(\\d{3,5}\\)\\s+?\\d{1,3}-\\d{2}-\\d{2}$'); // выражение
-      return regex.test(phone) ? phone.replace(/[ \-()_]/g, '') : false;
-    },
-
-    preparedData(type: string, data: any, productId: string = 'RKO'): string | object | boolean {
-      const phoneNumber = this.testPhone(data.phone);
-      if (!phoneNumber) return false;
-      const res: any = {
-        firstName: data.name,
-        phoneNumber,
-        comment: data.comment,
+    
+    getData (isComplete = false, blur = false): any {
+      const ctx: IContext = {
+        phone: this.phone,
+        isComplete,
+        applicationType: 'callback_request',
       };
-
-    res.dataSource = 'website';
-    res.isComplete = false;
-    res.productId = productId;
-    res.isPhoneConfirmRequired = data.isPhoneConfirmRequired;
-    if (data.websitePlacement) res.websitePlacement = data.websitePlacement;
-    if (data.ogrn) res.ogrn = data.ogrn;
-
-    switch (type) {
-      case 'registry':
-        res.applicationType = 'Registration';
-        res.setCaptchaCode = data.setCaptchaCode;
-        res.smsCode = false;
-        res.repeatSmsCode = false;
-        if (data.portalRequestId) res.portalRequestId = data.portalRequestId;
-        break;
-      default:
-        res.applicationType = data.applicationType;
-        break;
-    }
-      return res;
+      //if (blur) ctx.websitePlacement = { form: 'modulbank.ru', trigger: 'phone_capture_out_of_focus' };
+      const preparedData = api.preparedData('callback', ctx, this.productId);
+      return preparedData;
     },
+
     submitForm() {
-      const api = SendApi(apiUrls);
       this.loading = true; 
       //обработать номер
-      //const params = api.preparedData('callback', { phone: this.phone }, this.productId);
-      const par2 = {
-          "phoneNumber": "+79999999999",
-          "pdbpromocode": "70s9mu2z76xxvr60hm",
-          "dataSource": "website",
-          "isComplete": true,
-          "productId": "REGI",
-          "applicationType": "callback_request",
-      }
-      api.sendCallback(par2).then(() => {
+      const data = this.getData(false);
+      api.sendCallback(data).then(() => {
             this.$emit('formSendSuccess'); 
             const ddm = {
-              name: 'Telephone Sent In Long Callback Form',
+              name: 'Telephone Sent In Callback Form',
               category: 'user lead',
-              action: 'long callback form: name-mail-tel submit',
+              action: 'callback form: tel submit',
               element: this.$refs.submit.$el.classList,
               productId: "RKO",
             };            
             //отправка ddm, надеюсь работает
-            ddmEvent(ddm);            
+            ddmEvent(ddm);
           })
           .catch((err: Error) => {
             console.error(err);
