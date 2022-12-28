@@ -9,6 +9,7 @@ picture(:class="$style.picture")
   img(
     :class="$style.image"
     v-bind="options"
+    alt="friend.modulbank"
   )
 </template>
 
