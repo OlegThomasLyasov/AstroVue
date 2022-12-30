@@ -28,7 +28,7 @@ import Button from '../Button.vue';
 import { cityCodes8xxAllowed, cityCodesFirstNumberAllowed } from './data';
 import FieldCircleLoader from './FieldCircleLoader-v2.vue';
 import SendApi from '@modulbank/sendapi';
-import ddmEvent from '@modulbank/components-header/src/components/utils/plugins/ddmEvent';
+import ddmEvent from './ddm';
 
 const apiUrls = {
   url: '/crmlandingapi/productRequests',
